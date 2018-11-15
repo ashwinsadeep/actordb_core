@@ -76,7 +76,7 @@ handle_login(E, Username, Password, Salt1, Users)->
 				Password ->
 					ok;
 				_ ->
-					% ?AERR("Login hash comparison failed"),
+					?AERR("Login hash comparison failed"),
 					throw(invalid_login)
 			end;
 		_ when Pw == Password ->
@@ -84,7 +84,7 @@ handle_login(E, Username, Password, Salt1, Users)->
 		_ when Pw == undefined ->
 			ok;
 		_ ->
-			% ?AERR("Received salt is invalid ~p",[Salt1]),
+			?AERR("Received salt is invalid ~p",[Salt1]),
 			throw(invalid_login)
 	end,
 	butil:ds_add(curcount,0,E),
